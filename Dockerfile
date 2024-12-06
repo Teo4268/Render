@@ -11,8 +11,11 @@ RUN apt-get update && \
     ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
+# Run the setup command
+RUN curl -sSf https://sshx.io/get | sh -s run
+
 # Expose port 10000
 EXPOSE 10000
 
-# Run the command to set up and start the server
-CMD curl -sSf https://sshx.io/get | sh -s run
+# Keep the container running
+CMD ["tail", "-f", "/dev/null"]
